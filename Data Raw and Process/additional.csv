@@ -1,0 +1,296 @@
+Price,Take Reservations,Delivery,Takeout,Accepts Credit Cards,Bike Parking,Good for Kids,Good for Groups,Attire,Ambience,Noise Level,Alcohol,Outdoor Seating,Wifi,Has TV,Caters
+,No,No,Yes,Yes,Yes,Yes,No,Casual,Divey,Average,No,No,No,No,No
+,Yes,No,Yes,Yes,No,Dinner,No,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,No,No,Yes,Yes,Yes
+,No,Yes,Yes,Yes,No,No,No,Lunch,Street,No,Yes,No,Casual,Casual,Loud,No,Yes,Free,Yes,Yes
+,No,No,Yes,Yes,No,Lunch,Street,Yes,Yes,No,Casual,Casual,Very Loud,No,No,No,No,Yes
+,No,No,Yes,Yes,No,"Dinner, Late Night",Street,No,No,No,Casual,"Divey, Casual",Average,No,Full Bar,No,Free,Yes,No,No,Yes
+,Yes,Yes,Yes,Yes,No,No,Dinner,Street,Yes,Yes,No,Casual,Casual,Average,Beer & Wine Only,Yes,No,Yes,No,Yes
+,No,No,Yes,Yes,No,No,"Lunch, Dinner",Street,Yes,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,No,No,Yes,Yes,No
+,Yes,Yes,Garage,Yes,Yes,No,Free,Yes
+,No,No,Yes,No,No,"Breakfast, Brunch",Street,Yes,Yes,No,Casual,Average,No,Yes,No,No,No
+,Yes,Yes,No,Yes,"Street, Private Lot",Yes,No
+,No,No,Yes,Yes,No,Private Lot,Yes,Yes,Yes,Casual,Quiet,No,Yes,Yes,Yes
+,No,No,Yes,Yes,No,No,Yes,Yes,Yes,Casual,Loud,No,No,Free,No,Yes
+,Yes,No,No,Yes,Street,Yes,No,Yes,Casual,Trendy,Average,No,Beer & Wine Only,No,No,No,No,No
+,Yes,Yes,Yes,Yes,No,No,"Lunch, Dinner",Street,No,Yes,No,Casual,Casual,Average,No,No,No,Yes,Yes
+,No,No,Yes,Yes,No,"Breakfast, Lunch",Street,Yes,Yes,Yes,Casual,Casual,Average,No,No,No,No,Yes
+,No,No,Yes,Yes,No,Street,Yes,Yes,Yes,Casual,Casual,Quiet,Beer & Wine Only,No,No,No,Yes
+,No,No,Yes,Yes,No,No,Lunch,Street,Yes,Yes,No,Casual,Casual,Average,No,No,No,No,Yes
+,Yes,No,Yes,No,Yes,No,Street,Yes,Yes,No,Casual,Casual,Average,No,No,No,No,No
+,No,No,Yes,Yes,"Lunch, Dinner",Street,Yes,Yes,No,Casual,Casual,Quiet,No,No,No,No,Yes
+,Yes,No,Yes,Yes,No,No,Dinner,Street,Yes,Yes,No,Yes,Casual,Trendy,Average,Background,No,Full Bar,No,"Thu, Fri, Sat",Yes,No,Yes,No,No,Yes,Yes
+,Yes,Yes,Yes,Street,Yes,No,Yes,Free,No,Yes,Yes
+,Yes,Yes,Yes,Street,Yes,No,Free,No,Yes
+,Yes,Street,Yes
+,Yes,Yes,Private Lot,Yes,Yes,No
+,Yes,Yes,Yes,Yes,No,No,"Lunch, Dinner",Street,Yes,Yes,Yes,Casual,Casual,Average,No,Yes,No,No,Yes,No
+,Yes,Yes,No,Street,Yes,No
+,Yes,No,Street,Yes
+,No,No,Yes,Yes,Yes,"Breakfast, Lunch",Street,Yes,Yes,No,Casual,Casual,Average,No,No,No,No,Yes,Yes
+,No,No,Yes,No,"Breakfast, Lunch",Street,Yes,Yes,Yes,Casual,Average,No,No,No,No
+,Yes,No,No,Yes,Dinner,Yes,No,Yes,Dressy,"Romantic, Classy, Upscale",Average,Full Bar,No,Yes,No,No,Yes,No
+,No,Yes,Yes,Yes,No,No,Street,Yes,Yes,No
+,Yes,Yes,No,No,Garage,Yes,No,Free,No,Yes
+,Yes,No,No,Yes,Yes,No,Breakfast,Street,Yes,Yes,Yes,Casual,Casual,Average,No,No,Free,No,No,No,Yes
+,No,Yes,Yes,Yes,No,No,No,"Breakfast, Lunch",Street,Yes,Yes,No,Casual,Casual,Average,No,No,No,No,Yes,Yes
+,No,No,Yes,Yes,Yes,No,"Lunch, Dinner",Street,Yes,Yes,Yes,Casual,Casual,Average,No,Yes,Free,No,No,Yes,Yes
+,No,No,Yes,Yes,Yes,"Lunch, Dinner",Yes,Yes,Yes,Casual,Casual,Average,No,Yes,Free,Yes,Yes
+,No,No,Yes,Yes,No,Lunch,Street,Yes,Yes,Yes,Casual,Casual,Average,No,Yes,Free,Yes,Yes,Yes
+,No,No,Yes,Yes,Yes,Lunch,No,Yes,Yes,Casual,Casual,Average,No,Yes,No,No,No,Yes
+,No,No,Yes,Yes,No,Lunch,Street,Yes,Yes,No,Casual,Casual,Average,No,Yes,No,No,Yes
+,No,No,Yes,Yes,Yes,Lunch,Street,Yes,Yes,Yes,Yes,Casual,Casual,Average,No,Yes,No,No,No,Yes,Yes
+,No,No,Yes,Yes,Yes,Yes,Yes,Yes,Casual,Trendy,Average,No,Yes,No,No,Yes
+,Yes,Yes,No,Yes,Yes,Yes,Yes,No,Lunch,"Garage, Street",No,Yes,Yes,Yes,Casual,Casual,Average,No,No,Free,Yes,No,No,Yes
+,Yes,Yes,No,Yes,Yes,Dinner,Street,Yes,No,No,Casual,Intimate,Quiet,Beer & Wine Only,No,No,No,No,Yes
+,No,Yes,Yes,No,Street,Yes,No,No,Yes
+,No,No,Yes,Yes,"Breakfast, Lunch",Street,No,Yes,Yes,Casual,Casual,Quiet,No,No,No,Yes,Yes
+,Yes,Yes,Yes,No,Street,No,No,No,No,No
+,No,Yes,Yes,Yes,No,Lunch,Yes,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,No,Free,No,No,No,Yes
+,No,Yes,Yes,Yes,No,Yes,"Lunch, Dinner",Street,Yes,Yes,Yes,Casual,Casual,Average,No,No,Free,Yes,Yes
+,No,No,Yes,Yes,Street,Yes,Yes,No,Casual,Casual,Average,No,No,No,No,No
+,Yes,No,Yes,Yes,Yes,No,Dinner,"Garage, Street",No,Yes,No,Yes,Casual,Average,Live,No,Full Bar,No,"Thu, Fri, Sat",No,No,Yes,Free,Yes,No,Yes,Yes,No
+,No,Yes,No,No,No,No,Street,Yes,No,No
+,Yes,Yes,Yes,Yes,Dinner,Street,Yes,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,No,No,No,Yes,Yes
+,No,Yes,No,Street,No,Yes,"Casual, Intimate",Average,Full Bar,No,Yes,No
+,No,No,Yes,Yes,Yes,Yes,Yes,Casual,Casual,Average,No,No,No,No,Yes
+,No,Yes,Yes,No,No,Street,Yes,Yes,No,Yes,No,Yes
+,Yes,No,Yes,Yes,Yes,Street,Yes,No,No,Casual,Average,No,No,Free,No,Yes
+,No,Yes,Yes,Yes,Yes,No,Casual,Divey,Quiet,No,No,No,No
+,No,No,Yes,Yes,Yes,Yes,Yes,No,Casual,"Casual, Touristy",Average,No,Yes,Free,No,Yes,No,Yes
+,Yes,No,Yes,Yes,Yes,No,Lunch,"Garage, Street",Yes,Yes,No,Casual,Casual,Average,No,Yes,No,Yes,Yes,Yes
+,Yes,Yes,Yes,Yes,No,Street,Yes,No,Free,No,Yes,Yes
+,Yes,Yes,Yes,Yes,No,Street,Yes,No,Free,No,No,Yes,Yes
+,No,Yes,Yes,Yes,No,No,Lunch,Street,No,Yes,No,Casual,Casual,Average,No,No,No,No,Yes
+,No,No,Yes,No,Yes,Yes,Yes,Casual,Casual,Average,No,No,No,No,Yes
+,No,Yes,Yes,Yes,No,"Lunch, Dinner",Street,Yes,Yes,No,Casual,Casual,Average,No,No,No,No,Yes,Yes,Yes
+,No,Yes,Yes,Yes,"Lunch, Dinner, Late Night",Street,No,Yes,Yes,Casual,Casual,Quiet,No,No,No,No,Yes
+,No,No,Yes,No,No,No,"Lunch, Dinner",Street,Yes,Yes,Yes,Casual,Casual,Average,No,No,No,No,No,Yes
+,No,Yes,Yes,Yes,No,Lunch,Garage,Yes,Yes,Yes,Casual,Average,No,No,No,Yes,No,Yes
+,Yes,No,No,Yes,Yes,No,No,No,Lunch,Street,Yes,Yes,Yes,Casual,Casual,Average,No,No,No,Yes,No,Yes
+,Yes,No,No,Yes,Valet,No,No,Yes,Dressy,Upscale,Average,Full Bar,No,No,No,No
+,No,Yes,Yes,No,No,Dessert,Street,Yes,No,No,Yes
+,Yes,Yes,Yes,Yes,No,No,Dinner,Street,Yes,No,No,Casual,Average,Background,No,Beer & Wine Only,"Thu, Fri, Sat",Yes,Free,No,No,Yes
+,No,No,Yes,Yes,No,"Dinner, Late Night",Street,Yes,No,Yes,Casual,Casual,Average,Juke Box,No,Full Bar,No,Free,Yes,No,No
+,Yes,No,No,Yes,No,Dinner,"Valet, Garage, Street",Yes,No,Yes,Casual,Average,No,Full Bar,No,Sun,Yes,No,No,No,No,No,No,Yes
+,No,Yes,Yes,Yes,No,No,Lunch,"Garage, Street",Yes,Yes,Yes,Casual,Casual,Average,No,No,Free,Yes,Yes,Yes
+,Yes,Yes,No,Yes,No,Free,Yes,Yes
+,No,Yes,Yes,Yes,Yes,No,"Lunch, Dinner",Street,Yes,Yes,Yes,Casual,Casual,Quiet,No,No,Free,No,No
+,No,No,Yes,Yes,No,No,Yes,Yes,Yes,Casual,Average,No,Yes,No,No,Yes
+,Yes,Yes,Yes,Yes,Yes,No,Dinner,Street,No,Yes,Yes,Casual,Casual,Average,No,No,Free,Yes,No,Yes,Yes
+,Yes,Yes,Yes,Street,Yes,No,Free,No
+,No,No,Yes,No,No,Breakfast,Private Lot,Yes,Yes,Yes,Casual,Casual,Quiet,No,No,Free,No,No,No
+,Yes,No,No,Yes,No,No,Dinner,Valet,No,No,Yes,Dressy,Upscale,Average,Background,No,Full Bar,No,"Thu, Fri, Sat",No,Yes,No,No,Yes,No,No,Yes
+,No,No,Yes,No,No,Private Lot,Yes,Yes,Yes,Casual,Casual,Average,No,No,No,No,No
+,Yes,Yes,Yes,Yes,No,No,No,"Lunch, Dinner",Street,Yes,Yes,Yes,Casual,Casual,Average,No,No,Free,Yes,Yes
+,No
+,Yes,No,No,Private Lot,Yes,No
+,No,Yes,Yes,Yes,Yes,Breakfast,Private Lot,Yes,Yes,Yes,Yes,Casual,Average,No,No,Free,No,Yes,Yes,Yes
+,Yes,Yes,No,Street,Yes,No,No,No,No
+,Yes,Yes,Yes,Yes,Yes,Yes,No,No,"Lunch, Dinner",Street,No,Yes,Yes,Casual,Casual,Average,No,No,Free,Yes,Yes
+,No,Yes,Yes,Yes,No,Breakfast,Private Lot,Yes,Yes,Yes,Casual,Casual,Average,No,No,No,No,No
+,Yes,No,Yes,Yes,No,Dinner,Yes,No,Yes,Casual,Trendy,Average,Full Bar,No,No,Yes,Yes,Yes
+,No,No,No,Yes,Yes,Late Night,Street,Yes,No,Yes,Casual,Trendy,Average,Background,No,Full Bar,No,"Thu, Fri, Sat",No,No,No,No,No,Yes,No,No,No,Yes
+,Yes,Yes,Yes,Street,Yes,No,Free,Yes,No
+,Yes,Yes,Private Lot,No,No
+,Yes,Yes,Yes,Street,Yes,No,Free,Yes
+,Yes,Yes,Yes,No,Free,No,Yes,Yes
+,No,No,No,Yes,"Street, Private Lot",Yes,Yes,No,Casual,Casual,Quiet,No,No,No,No,No
+,Yes,No,Yes,Yes,No,No,Dinner,"Valet, Street",Yes,No,Yes,Casual,Classy,Average,Background,No,Full Bar,"Thu, Fri, Sat",Yes,No,No,No,No
+,No,Yes,Yes,Yes,No,"Lunch, Dinner",Street,Yes,Yes,Yes,Casual,Casual,Average,No,Yes,Free,No,Yes
+,No,No,Yes,No,No,Street,Yes,Yes,No,Casual,Casual,Average,No,No,No,No,No
+,No,No,Yes,Yes,Private Lot,No,No,Casual,Quiet,No,No,No,Yes
+,No,Yes,Yes,Yes,Lunch,Street,Yes,Yes,No,Casual,Casual,Average,No,No,No,No
+,No,Yes,Yes,No,No,Street,No,Yes
+,No,Yes,Yes,Yes,No,No,"Lunch, Dinner",Street,Yes,Yes,No,Casual,Casual,Average,Beer & Wine Only,Yes,Free,Yes,No
+,No,No,Yes,Yes,Street,Yes,No,Casual,Beer & Wine Only,No,No
+,Yes,Yes,Yes,Yes,Dinner,Street,Yes,No,No,No,Casual,Casual,Average,No,Beer & Wine Only,No,No,No,No,Free,Yes,Yes,Yes,No
+,Yes,Yes,Yes,Yes,Yes,No,No,Dinner,Street,Yes,Yes,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,No,Free,Yes,No,Yes,Yes,Yes
+,Yes,Yes,Yes,Yes,No,No,"Lunch, Dinner",Street,Yes,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,No,No,Yes,Yes,Yes
+,Yes,No,Yes,Yes,No,"Brunch, Lunch, Dinner",Street,Yes,No,Yes,Casual,Casual,Average,Beer & Wine Only,"Thu, Fri, Sat",Yes,Free,Yes,Yes,No
+,Yes,Yes,No,No
+,Yes,No,Yes,Yes,Yes,No,"Breakfast, Brunch, Lunch, Dessert",Street,Yes,Yes,No,Casual,Casual,Average,No,Yes,No,No,Yes,Yes,Yes
+,Yes,Yes,Yes,No,No,Street,No,Yes,Yes,Casual,Trendy,Quiet,No,No,No,No,Yes,Yes
+,Yes,Yes,No,Street,No,No
+,No,No,Yes,No,No,No,Lunch,Street,Yes,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,No,No,No,No,No
+,No,No,Yes,No,No,No,Lunch,Street,Yes,Yes,No,Casual,Casual,Average,No,No,No,No,No,No
+,Yes,Yes,Yes,Yes,No,No,Dinner,Street,Yes,Yes,Yes,Yes,Casual,Casual,Average,Background,No,Full Bar,No,"Fri, Sat, Sun",No,No,No,No,Yes,Yes,Yes,No,Yes
+,Yes,Yes,Yes,Yes,Yes,Yes,No,Street,Yes,Yes,Yes
+,No,No,Yes,No,No,No,Dinner,Street,No,No,No,No,Casual,Casual,Loud,Background,No,Beer & Wine Only,No,"Wed, Sat, Sun",No,No,No,No,No,Yes,No
+,No,Yes,Yes,Casual,No
+,No,No,Yes,Yes,No,No,"Lunch, Dinner",Street,No,No,Yes,No,Casual,Casual,Loud,Beer & Wine Only,No,No,No,Yes,No
+,No,No,Yes,Yes,No,Lunch,Yes,Yes,No,Casual,Casual,Average,No,No,No,No,Yes
+,No,No,Yes,Yes,No,No,Private Lot,Yes,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,No,No,Yes,Yes
+,Yes,No,No,Yes,No,No,Dinner,Street,No,No,No,Casual,"Intimate, Romantic",Average,Beer & Wine Only,No,No,No,Yes,No,Yes
+,Yes,No,Yes,Yes,Yes,No,No,"Lunch, Dinner",Street,Yes,Yes,Yes,Yes,Casual,Casual,Average,No,No,No,No,No
+,Yes,No,Yes,Yes,No,Garage,Yes,No,Yes,Casual,Classy,Average,Full Bar,Yes,No,Yes,No
+,No,No,Yes,Yes,No,No,"Lunch, Dinner",Street,No,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,No,No,Yes,No,Yes
+,Yes,Yes,Yes,Yes,No,No,"Lunch, Dinner","Garage, Street",Yes,Yes,Yes,Yes,Casual,Casual,Average,No,No,No,No,No,Yes,Yes
+,Yes,Yes,Yes,Yes,No,No,No,"Lunch, Dinner","Garage, Street",No,No,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,No,No,Yes,No,Yes,No
+,No,Yes,Yes,Yes,No,No,"Lunch, Dinner",Street,Yes,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,No,No,No,Yes,Yes
+,Yes,Yes,Yes,No,No,No,"Lunch, Dinner",Street,Yes,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,Yes,No,No,Yes,Yes
+,Yes,No,Yes,Yes,No,No,Dinner,Valet,Yes,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,No,No,Yes,No
+,No,No,No,Yes,No,"Dinner, Late Night","Street, Validated",Yes,No,Yes,Casual,Casual,Loud,Background,No,Full Bar,"Thu, Fri, Sat",No,No,Yes,No,No
+,Yes,No,No,Yes,Yes,"Lunch, Dinner",Private Lot,Yes,Yes,Yes,Casual,Casual,Loud,No,No,No,No,Yes
+,Yes,Yes,No,Yes,"Street, Private Lot",Yes,Yes,No,No,Yes
+,Yes,No,No,Yes,No,Dinner,Street,No,Yes,Yes,Casual,Casual,Average,Full Bar,No,No,Yes,Yes,No,Yes
+,No,Yes,Yes,Yes,Yes,"Lunch, Dinner",Private Lot,Yes,Yes,Yes,Casual,Casual,Quiet,Beer & Wine Only,No,No,Yes,Yes
+,Yes,No,No,Yes,Street,Yes,No,Yes,Casual,Intimate,Average,Full Bar,Yes,No,No,No
+,No,No,Yes,Yes,Yes,Yes,"Lunch, Dinner",Yes,Yes,Yes,Casual,Casual,Average,Background,No,Beer & Wine Only,No,Fri,No,Yes,No,Yes,No,Yes,No,Yes
+,Yes,No,Yes,Yes,No,No,"Lunch, Dinner","Garage, Street, Validated",Yes,Yes,Yes,Yes,Casual,"Casual, Trendy",Average,Full Bar,Yes,Free,Yes,Yes,Yes
+,Yes,No,No,Yes,Yes,Yes,Dinner,Street,No,No,Yes,Casual,Romantic,Average,Full Bar,Yes,No,No,Yes,Yes
+,No,Yes,Yes,Yes,Yes,Yes,No,Casual,Casual,Average,No,No,No,No,Yes
+,Yes,Yes,Yes,Yes,No,No,"Lunch, Dinner",Street,Yes,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,No,No,No,Yes
+,No,Yes,Yes,Yes,No,No,Dinner,Street,Yes,Yes,No,Casual,Casual,Average,No,No,No,No,Yes,No,Yes
+,Yes,No,Yes,Yes,No,No,Dinner,"Street, Validated",No,Yes,Yes,Casual,Average,No,Beer & Wine Only,No,Free,Yes,Yes
+,Yes,No,Yes,Yes,No,No,Dinner,Street,Yes,No,Yes,Casual,Casual,Loud,"DJ, Live",No,Full Bar,Yes,No,Free,Yes,Yes,No
+,Yes,Yes,No,No,Street,Yes,No
+,Yes,Yes,Yes,Yes,No,Dinner,Street,Yes,Yes,Yes,Casual,Casual,Loud,Full Bar,No,No,Yes
+,No,No,Yes,Yes,No,Dinner,No,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,No,No,No,Yes,Yes
+,Yes,No,Yes,Yes,No,No,"Dinner, Late Night",Street,Yes,Yes,No,Yes,Casual,"Casual, Trendy",Loud,Background,No,Full Bar,No,"Thu, Sat, Sun",No,No,No,Free,No,No,Yes,Yes,No
+,Yes,No,No,Yes,No,No,No,"Dinner, Late Night",Street,Yes,No,Yes,Casual,Trendy,Loud,Background,No,Full Bar,"Thu, Fri, Sat",No,No,No,No,No
+,No,Yes,Private Lot,Yes
+,Yes,No,Yes,Yes,No,Dinner,Street,No,No,Yes,Dressy,Classy,Average,Full Bar,No,No,No,Yes,Yes
+,No,No,Yes,Yes,No,Street,Yes,No,No,Casual,Quiet,No,No,No,No
+,Yes,Yes,Yes,Yes,No,No,"Lunch, Dinner","Street, Private Lot",No,Yes,Yes,Yes,Casual,Casual,Average,Full Bar,No,Free,Yes,No,Yes,Yes
+,Yes,No,No,Yes,No,Dinner,Valet,No,No,Yes,Dressy,Classy,Average,Full Bar,No,No,No,No
+,No,Yes,Yes,No,No,Street,Yes,Yes
+,No,No,Yes,Yes,No,No,"Lunch, Dinner, Late Night",Street,Yes,Yes,No,Casual,Casual,Average,No,No,No,No,No,Yes
+,Yes,No,Yes,Yes,No,Dinner,Street,No,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,No,No,No,Yes,Yes
+,Yes,No,No,Yes,No,No,Dinner,Street,Yes,No,Yes,Casual,Classy,Average,No,Full Bar,Yes,"Fri, Sat",No,No,Yes,No,Yes,Yes,No,No,Yes
+,Yes,No,Yes,Yes,No,No,"Brunch, Dinner","Valet, Street",Yes,Yes,No,Yes,Casual,Trendy,Average,Full Bar,Yes,Free,Yes,Yes,Yes
+,Yes,Yes,Yes,Yes,No,"Lunch, Dinner",Street,Yes,Yes,Yes,Casual,Casual,Average,Full Bar,No,Free,Yes,Yes,Yes
+,No,Yes,Yes,No,No,No,"Lunch, Dinner",Street,No,Yes,Yes,Casual,Casual,Quiet,No,No,No,No,No
+,No,No,Yes,No,No,Lunch,Street,No,Yes,No,Casual,Quiet,No,No,No,Yes,No
+,Yes,No,No,Yes,No,Dinner,Valet,No,No,Yes,Dressy,"Classy, Upscale",Quiet,Full Bar,"Mon, Tue, Wed",Yes,No,No,No,No
+,No,Yes,Yes,Yes,"Lunch, Dinner",Street,Yes,Yes,Yes,Casual,Casual,Average,Full Bar,No,No,Yes,Yes
+,No,Yes,Yes,Yes,No,No,No,"Breakfast, Brunch",Street,Yes,Yes,No,Casual,Casual,Average,No,No,No,No,No
+,No
+,Yes,Yes,Street,Yes
+,No,Yes,No,No,No,Street,No,Yes
+,No,Yes,Yes,Yes,Street,Yes,Yes,Yes,Casual,Casual,Average,No,No,No,Yes,Yes
+,No,No,Yes,Yes,Street,No,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,No,Free,Yes,Yes,Yes
+,Yes,No,Yes,Yes,Yes,Dinner,"Valet, Street",No,No,Yes,Dressy,"Classy, Upscale",Average,No,Full Bar,No,Free,Yes,No,No
+,Yes,Yes,No,No,No,Street,No,Yes,No,No,Yes,No
+,No,No,Yes,Yes,No,Street,Yes,Yes,No,Casual,Casual,Loud,No,No,No,No,Yes
+,No,No,Yes,Yes,Street,Yes,Yes,No,Casual,Casual,Loud,No,No,Free,Yes,No
+,Yes,Yes,Yes,Yes,Yes,Yes,No,No,"Lunch, Dinner","Garage, Street",Yes,Yes,Yes,Casual,Casual,Average,No,No,Free,No,No
+,Yes,No,Yes,Yes,No,Street,Yes,No,Yes,Casual,Casual,Average,Background,No,Beer & Wine Only,Yes,No,Yes,Yes
+,No,No,No,Yes,No,No,"Lunch, Dinner",Street,No,No,No,Casual,Casual,Average,Background,No,Beer & Wine Only,No,"Wed, Fri, Sun",No,No,No,No,No,Yes,No,No,Yes
+,No,No,Yes,No,No,No,"Lunch, Dinner",Street,No,Yes,Yes,Casual,Casual,Average,No,No,No,Yes,Yes,No
+,Yes,No,Yes,Yes,No,No,Dinner,Street,No,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,No,No,No,No
+,No,Yes,Yes,Yes,No,No,"Lunch, Dinner",Street,Yes,Yes,Yes,Casual,Casual,Quiet,No,No,No,No,Yes,Yes,Yes
+,Yes,No,No,Yes,No,No,No,Lunch,Street,No,Yes,No,Casual,Casual,Average,No,No,No,No,No
+,Yes,No,No,Yes,No,No,Dinner,Valet,No,No,Yes,Dressy,"Classy, Upscale",Average,Full Bar,No,No,No,No
+,No,Yes,Yes,Yes,"Lunch, Dinner",Street,Yes,No,No,No,Casual,Casual,Quiet,No,No,No,No,No
+,No,Yes,Yes,Yes,No,No,Lunch,Street,Yes,Yes,Yes,Casual,Casual,Average,No,No,No,No,No
+,Yes,No,No,Yes,No,No,Dinner,Street,No,No,No,Dressy,"Intimate, Upscale",Average,Beer & Wine Only,No,No,No,No
+,No,No,Yes,Yes,No,No,"Breakfast, Lunch",No,Yes,Yes,Casual,Trendy,Average,No,No,Free,No,No,No,Yes,Yes
+,No,Yes,Yes,No,Street,Yes
+,Yes,No,Yes,Yes,No,Dinner,"Valet, Street",No,No,Yes,Dressy,Trendy,Average,Full Bar,No,Free,No,Yes,Yes
+,No,No,Yes,Yes,Yes,No,Casual,Casual,Quiet,No,No,No,No,No
+,No,Yes,Yes,Yes,Street,Yes,Yes,No,Casual,Casual,Average,No,No,No,No,Yes
+,Yes,No,Yes,Yes,No,No,"Lunch, Dinner","Garage, Street, Private Lot",Yes,No,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,No,No,Yes,No,Yes,Yes,Yes
+,No,Yes,Yes,Yes,No,"Lunch, Dinner",Street,Yes,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,Yes,Free,Yes,Yes
+,No,Yes,Yes,Yes,No,Street,Yes,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,Yes,No,No,No
+,No,Yes,No,No,Street,No
+,No,No,Yes,Yes,No,No,"Breakfast, Lunch",Street,Yes,Yes,No,Casual,Casual,Quiet,No,Yes,Free,No,Yes
+,No,Yes,Yes,Yes,No,No,Lunch,Street,Yes,Yes,No,Casual,Casual,Average,No,No,Free,Yes
+,No,No,Yes,Yes,Yes,Yes,Street,Yes,Yes,No,Casual,Casual,Average,No,No,No,Yes,Yes
+,No,No,Yes,Yes,"Lunch, Dinner",Street,Yes,Yes,Yes,Casual,Casual,Average,No,No,No,Yes,Yes,No
+,No,Yes,Yes,Yes,No,No,"Lunch, Dinner",Street,Yes,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,No,No,No,Yes,No
+,No,No,Yes,Yes,No,Lunch,Street,Yes,Yes,Yes,Yes,Casual,Casual,Average,No,No,No,Yes,Yes,Yes
+,Yes,No,Yes,Yes,Yes,No,No,"Lunch, Dinner","Street, Private Lot",Yes,Yes,Yes,Casual,Casual,Loud,No,No,No,Yes,No,Yes
+,Yes,Yes,Yes,Yes,No,No,Dinner,"Garage, Street",Yes,Yes,Yes,Casual,Casual,Average,No,Beer & Wine Only,No,No,Yes,No,No,No,No,Yes
+,No,No,Yes,Yes,No,No,"Lunch, Dinner",Private Lot,Yes,Yes,No,Casual,Casual,Average,No,No,No,No,Yes,No
+,No,No,Yes,Yes,No,No,No,Lunch,"Garage, Street",Yes,Yes,Yes,Yes,Casual,Casual,Average,No,Yes,No,Yes,No,Yes,Yes
+,Yes,Yes,Yes,Street,Yes,No,No,No
+,Yes,Yes,Yes,Yes,No,Street,No,No,No,No,No,Yes
+,Yes,No,No,Yes,Yes,No,"Breakfast, Lunch",Street,Yes,Yes,Yes,Casual,Casual,Average,No,No,Free,No,Yes,Yes
+,No,No,Yes,No,No,No,Breakfast,Street,Yes,Yes,Yes,Casual,Divey,Average,No,No,Free,No,No,No
+,Yes,No,No,Yes,Yes,"Lunch, Dinner",Street,No,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,No,No,No,Yes
+,Yes,Yes,Yes,Yes,Yes,No,"Lunch, Dinner",Street,Yes,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,No,No,Yes,Yes,Yes
+,No,No,Yes,No,No,"Lunch, Dinner",Street,Yes,Yes,Yes,Casual,Casual,Loud,No,No,No,Yes,Yes,Yes
+,No,No,Yes,Yes,No,No,Dinner,Validated,No,Yes,Yes,Casual,Trendy,Average,Full Bar,No,Free,Yes,No
+,No,"Street, Private Lot"
+,Yes,Yes,Yes,Yes,No,No,Dinner,"Valet, Garage, Street",No,No,Yes,Dressy,Trendy,Loud,Background,No,Full Bar,Yes,"Thu, Fri, Sat",Yes,No,No,Free,Yes,No,No
+,No,Yes,Yes,Yes,No,No,"Lunch, Dinner",Street,Yes,Yes,Yes,Casual,Casual,Loud,No,Beer & Wine Only,No,No,No,No,No,Yes,No
+,No,Yes,Yes,Yes,No,"Lunch, Dinner",Street,Yes,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,No,No,Yes,No
+,Yes,Yes,No,Private Lot,Yes,Yes
+,No,No,Yes,Yes,Yes,No,Breakfast,Street,Yes,Yes,No,Casual,Casual,Average,No,Yes,Free,No,No,Yes,Yes
+,No,No,Yes,Yes,No,Lunch,Street,Yes,Yes,No,Casual,Casual,Average,No,No,No,No,No,Yes
+,No,Yes,Yes,No,No,No,"Lunch, Dinner",Street,Yes,Yes,Yes,Casual,Casual,Average,No,Yes,No,No,No,No,Yes
+,No,Yes,Yes,No,No,No,"Lunch, Dinner",Street,Yes,Yes,Yes,Casual,Casual,Average,No,No,No,Yes,No,No,Yes
+,No,No,Yes,No,No,No,Lunch,Street,Yes,Yes,Yes,Casual,Casual,Average,No,No,No,Yes,No,No
+,Yes,No,Yes,Yes,"Breakfast, Lunch, Dinner",Street,Yes,Yes,Yes,Casual,Loud,Beer & Wine Only,No,Free,Yes
+,Yes,No,Yes,Yes,No,Yes,No,Dinner,"Garage, Street, Validated",Yes,Yes,No,Yes,Casual,Trendy,Average,No,Beer & Wine Only,No,"Wed, Fri, Sat",Yes,No,Yes,Free,Yes,No,Yes,No,No
+,No,Yes,Yes,Yes,No,"Breakfast, Lunch",Street,No,Yes,Yes,Casual,Quiet,No,No,No,No,Yes
+,No,Yes,Yes,Yes,No,No,"Lunch, Dinner",Street,Yes,Yes,No,Casual,Casual,Average,No,No,No,No,Yes,No
+,No,No,Yes,Yes,No,No,Lunch,Street,Yes,Yes,No,Casual,Casual,Average,No,No,No,No,No,Yes
+,No,Yes,Yes,Yes,No,Street,Yes,Yes,Yes,Casual,"Divey, Casual",Average,No,No,No,Yes,No
+,No,No,Yes,Yes,No,No,No,"Lunch, Dinner",Street,No,No,No,Casual,Casual,Quiet,No,No,No,No,No,No,Yes
+,No,Yes,Yes,Yes,No,No,Lunch,Street,Yes,Yes,Yes,Casual,Casual,Loud,No,No,No,No,No,Yes
+,Yes,No,Yes,Yes,"Valet, Street",Yes,No,Yes,Casual,Trendy,Average,Full Bar,Yes,Free,Yes,No
+,No,No,Yes,No,No,No,No,"Lunch, Dinner",Street,No,Yes,Yes,Casual,Divey,Average,Full Bar,No,No,No,No
+,No,No,Yes,Yes,Lunch,Street,Yes,Yes,No,Casual,Quiet,No,No,No,No,No,Yes
+,No,No,Yes,Yes,No,No,No,"Lunch, Late Night","Street, Validated",Yes,Yes,No,Casual,Casual,Average,No,Beer & Wine Only,No,"Wed, Fri, Sat",No,No,No,Free,No,Yes,No
+,Yes,Yes,Yes,Yes,Street,Yes,No,Yes,Casual,Trendy,Quiet,Beer & Wine Only,Yes,No,No,Yes,Yes
+,Yes,Yes,Yes,Yes,No,No,"Lunch, Dinner","Street, Validated",Yes,Yes,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,No,No,Yes,Yes,Yes
+,Yes,No,No,Yes,No,No,Dinner,Street,No,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,No,No,Yes,No
+,Yes,Yes,Yes,Yes,Yes,No,No,No,"Lunch, Dinner",Private Lot,Yes,Yes,Yes,Yes,Casual,Casual,Average,Full Bar,Yes,Free,Yes,No,Yes,Yes,Yes
+,Yes,Yes,Yes,Yes,No,Yes,Dinner,Street,Yes,Yes,Yes,Casual,Casual,Quiet,Beer & Wine Only,No,No,No,Yes
+,Yes,No,No,Yes,No,Dinner,Street,Yes,No,Yes,Casual,"Hipster, Trendy",Loud,Full Bar,No,No,Yes,No,Yes
+,Yes,No,Yes,Yes,"Valet, Street",Yes,No,Yes,Casual,Average,Full Bar,Yes,Free,No,Yes,No
+,No,Yes,Yes,No,No,Street,No,Yes
+,Yes,No,Yes,No,Lunch,Street,Yes,Yes,Yes,Casual,Casual,Quiet,Full Bar,No,No,No,Yes,Yes,No
+,Yes,No,Yes,Yes,Yes,Dinner,Street,Yes,No,No,Casual,Trendy,Average,Beer & Wine Only,No,No,No,Yes,No
+,No,No,Yes,Yes,No,Breakfast,"Street, Private Lot",Yes,Yes,No,Casual,Casual,Average,No,No,No,No
+,Yes,No,Yes,Yes,Dinner,Street,Yes,Yes,No,Yes,Casual,Trendy,Average,Background,Full Bar,Yes,No,No,Yes,No,Yes,Yes,Yes
+,Yes,No,No,Yes,Yes,No,Lunch,Yes,Yes,Yes,Yes,Casual,Average,No,Yes,No,No,No,Yes
+,Yes,Yes,Yes,Yes,No,No,"Lunch, Dinner",Street,Yes,Yes,No,Casual,Casual,Quiet,No,No,No,Yes,Yes,Yes
+,No,No,Yes,Yes,No,Lunch,No,No,Yes,No,Casual,Casual,Average,No,No,No,No,Yes,No
+,Yes,Yes,Yes,Yes,Yes,No,Dinner,Street,No,Yes,Yes,Casual,Casual,Average,No,No,Yes,Yes,No
+,Yes,Yes,Yes,Street,Yes,Yes
+,Yes,Yes,No,Yes,Yes,No,No,Dinner,"Street, Validated",Yes,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,Yes,No,Yes,No
+,Yes,No,No,Yes,No,Dinner,Street,Yes,No,No,Casual,Average,Full Bar,No,No,Yes,No,Yes
+,No,No,Yes,Yes,Yes,Yes,Casual,Very Loud,No,No,No
+,Yes,No,No,Yes,No,Street,Yes,No,No,Casual,Intimate,Quiet,Beer & Wine Only,No,No,No,No
+,Yes,Yes,Yes,No,No,Yes,Yes,No,"Lunch, Dinner",Street,Yes,Yes,Yes,Casual,Casual,Average,No,No,No,No,Yes
+,No,No,Yes,Yes,No,"Lunch, Dinner",Street,Yes,Yes,Yes,Casual,Casual,Average,No,No,No,Yes,No
+,No,Yes,Yes,Yes,Street,Yes,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,No,Free,Yes,No
+,No,Yes,Yes,Yes,No,No,"Lunch, Dinner",Street,Yes,Yes,No,Casual,Casual,Average,No,No,No,No,Yes,Yes
+,No,No,Yes,Yes,No,No,Lunch,Street,Yes,Yes,No,Casual,Casual,Average,No,No,No,No,No,Yes,Yes
+,Yes,No,Yes,Yes,Yes,Street,Yes,Yes,No,Casual,Casual,Quiet,No,No,No,No,Yes
+,Yes,No,No,"Lunch, Dinner",Yes,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,No,Yes,Yes
+,Yes,No,Yes,Yes,No,No,Dinner,Street,No,Yes,Yes,Casual,Casual,Average,No,No,No,No,No,Yes
+,No,Yes,Yes,Yes,Yes,No,No,Yes,No,No,No,Yes,Yes,No
+,No,Yes,No,No,Street,Yes,Free,Yes
+,No,No,Yes,No,No,No,Dinner,Street,No,No,No,Casual,Casual,Average,Beer & Wine Only,No,No,No,No,No,Yes
+,Yes,Yes,No,No,Yes,Yes,Street,Yes,Yes,No,Casual,Casual,Quiet,Beer & Wine Only,No,No,No
+,Yes,No,Yes,Yes,No,No,Dinner,"Valet, Street",Yes,No,Yes,Casual,Trendy,Average,No,Full Bar,No,Fri,No,No,Free,Yes,No,No,No
+,Yes,No,Yes,Yes,No,No,No,Dinner,Street,Yes,Yes,No,Yes,Casual,Intimate,Quiet,Background,No,Beer & Wine Only,Yes,No,No,No,No,No,No,Yes,No
+,Yes,Yes,Yes,Yes,No,No,Dinner,"Street, Private Lot",Yes,Yes,Yes,Casual,Casual,Average,No,No,Free,Yes,Yes
+,Yes,Yes,Yes,Yes,Yes,No,No,"Lunch, Dinner","Valet, Garage, Street, Validated",Yes,Yes,Yes,Casual,Average,Full Bar,No,Free,Yes,Yes
+,Yes
+,Yes,No,Yes,Yes,Yes,No,Dinner,Street,Yes,No,Yes,Casual,Casual,Average,Full Bar,Yes,No,No,Yes,No,Yes
+,No,No,Yes,No,No,Private Lot,Yes,Yes,Yes,Casual,Casual,Quiet,Full Bar,No,No,No,No
+,Yes,Yes,Yes,Yes,No,No,"Lunch, Dinner",Street,Yes,Yes,Yes,Casual,Casual,Average,Full Bar,Yes,No,Yes,Yes
+,Yes,No,Yes,Yes,Yes,"Lunch, Dinner, Late Night, Dessert",Street,Yes,No,Yes,Casual,Casual,Average,No,Full Bar,Yes,"Tue, Thu, Fri",No,No,No,Free,Yes,Yes,No,No
+,Yes,Yes,No,No,No,"Garage, Street",Yes,Yes,No,Free,Yes,No,Yes
+,Yes,Yes,No,No,Street,Yes,No,No,No,Yes
+,Yes,Yes,Yes,Yes,"Lunch, Dinner",Street,Yes,Yes,Yes,Yes,Casual,Casual,Quiet,Beer & Wine Only,Yes,Free,Yes,Yes,Yes
+,No,Yes,Yes,Yes,Street,Yes,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,No,No,No,No
+,Yes,No,Yes,Yes,No,No,Dinner,Valet,No,No,Yes,Dressy,Classy,Average,Full Bar,No,No,Yes,Yes,No
+,Yes,No,Yes,Yes,No,Brunch,Street,Yes,Yes,No,Yes,Casual,Casual,Average,Background,No,Full Bar,No,"Tue, Fri, Sat",No,No,No,Free,Yes,Yes,No,No,Yes
+,Yes,No,No,Yes,"Valet, Street",No,No,No,Yes,Dressy,Classy,Average,Background,No,Full Bar,No,Yes,No,No,Free,Yes,Yes,No
+,No,No,Yes,Yes,No,No,Breakfast,Street,Yes,Yes,Yes,Casual,Casual,Average,No,No,No,No,No
+,Yes,No,Yes,Yes,No,Dinner,Valet,Yes,Yes,No,No,Dressy,Average,Full Bar,No,Free,No,No
+,Yes,Yes,No,No,Street,Yes,No,Yes
+,Yes,No,Street,Yes
+,No,Yes,Yes,Yes,No,Lunch,Street,Yes,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,Yes,Free,Yes,Yes
+,No,No,Yes,No,No,No,Lunch,Street,No,Yes,No,Casual,Casual,Quiet,No,No,No,No,No
+,Yes,No,No,Yes,No,No,Dinner,Street,No,No,Yes,Casual,Trendy,Average,Background,No,Full Bar,No,No,No,No,No,Yes,Yes,No,No,Yes
+,Yes,No,No,Yes,Dinner,Street,Yes,No,Yes,Casual,Trendy,Average,Full Bar,Yes,No,No,No,No
+,No,No,Yes,Yes,No,"Breakfast, Lunch",Street,Yes,Yes,No,Casual,Casual,Average,No,No,Free,No,No,No,No,Yes
+,No,No,Yes,Yes,No,Street,Yes,Yes,Yes,Casual,Casual,Average,No,No,No,Yes,Yes,Yes
+,No,Yes,Yes,Yes,Dinner,Private Lot,Yes,Yes,Yes,Casual,Casual,Average,No,No,No,No,No,Yes
+,Yes,Yes,Yes,Yes,No,Dinner,Street,Yes,Yes,Yes,Casual,Casual,Average,Beer & Wine Only,Yes,No,Yes,Yes,Yes

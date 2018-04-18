@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html>
+<head>
+	  <meta charset="utf-8">
+
+  <title>HW 4 INFO 4310</title>
+  <meta name="description" content="Assignment 3 INFO 4310">
+  <meta name="author" content="Melissa Avila; Ben Stevens">
+  <meta content="en" http-equiv="Content-Language">
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+<!--   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+ -->    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+ <script src="selectize.js-master/dist/js/standalone/selectize.min.js"></script>
+ <link rel="stylesheet" href="selectize.js-master/dist/css/selectize.css">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+<style>
+	.links line {
+	  stroke: #999;
+	  stroke-opacity: 0.6;
+	}
+
+	.nodes circle {
+	  stroke: #fff;
+	  stroke-width: 1.5px;
+	}
+
+	.indent_left{
+		margin-left: 1em;
+	}
+	.indent_right{
+		margin-right: 1em;
+	}
+	.head{
+		font-size: 2.5em;
+	}
+	.center{
+		text-align: center;
+	}
+	.top_filter{
+		margin-top: 4em;
+		font-weight: bold;
+	}
+	.restaurant{
+		font-size: 1.5em !important;
+		margin-bottom: 2rem !important;
+	}
+	.input-field{
+		width: 300px;
+	}
+	#btn_search{
+		margin-left: 2em;
+		margin-bottom: 1em;
+	}
+	.btn-circle.btn-lg {
+	  width: 50px;
+	  height: 50px;
+	  padding: 10px 16px;
+	  font-size: 15px;
+	  line-height: 1.33;
+	  border-radius: 25px;
+	}
+	#shift{
+
+		margin-left: -.3em;
+	}
+	.rec_vis_div{
+		width: 70%;
+		display: inline-block;
+	}
+	.details{
+		width: 20%;
+		display: inline-block;
+		vertical-align: top;
+		margin-top: 1em;
+
+	}
+	.details p{
+		margin-bottom:1em;
+	}
+	.input{
+
+		width: 100px !important;
+		display: inline-block !important;
+		height: 2rem !important;
+		margin-bottom: 0px !important;
+	}
+	.label{
+		display: inline-block !important;
+		vertical-align: top;
+		position: relative !important;
+		margin-top: 1em !important;
+		font-size: 1.3em !important;
+		margin-right: 1em !important;
+
+	}
+	.row .col{
+		float: right;
+		text-align: right;
+	}
+	.row{
+		margin-bottom: 0px;
+	}
+	.input-field{
+		margin-top: 0px;
+	}
+	.weightings{
+			text-align: right;
+	}
+	.sub-category{
+		font-weight: bold;
+	}
+	.changeCenter{
+		margin-top: 2em;
+	}
+	.title_res{
+		margin-bottom: 1em;
+		font-weight: bold;
+		text-align: center;
+	}
+	.details_Name{
+		text-align: center;
+		margin-top: 1em;
+		font-size: 2em;
+		font-style: italic;
+		height: 0px;
+		margin-bottom: 1em;
+	}
+	* body{
+		background: #F8F8F8;
+	}
+
+</style>
+
+</head>
+<body>
+<div class="center">
+	<h2>Botson Restaurant Recommender</h2>
+	<h5>Powered by Yelp</h5>
+</div> <!-- end of top_head -->
+<div class ="center top_filter">
+	<span class="head indent_right">If I like</span>
+	<div class="input-field inline">
+			<select id="select-beast" class="demo-default" placeholder="Select a place...">
+				<option value="">Select a restaurant...</option>
+			</select>
+		<!-- <div class="ui-widget">
+          <input placeholder="Restaurant Name" id="tags" type="text" class="validate restaurant">
+      </div> -->
+        </div> <span class="indent_left head ">what else would I like?</span>
+        <button type="button" id="btn_search" class="btn btn-info btn-circle btn-lg"><i id="shift" class="glyphicon glyphicon-ok">Go</i></button>
+
+</div>
+<div class="rec_vis_div">
+	<div class="details_Name"></div>
+	<svg id="rec_vis" width="900" height="450"></svg>	
+</div>
+
+<div class="details"></div>
+<div class="weightings">
+	<p>Adjust the weighting of each recommendation factor (values must add to 1):</p>
+	<div class="row">
+    <div class="input-field col s3">
+    	 <label class="active label" for="option_cat">Category Similarity</label>
+      <input value=".6" id="option_cat" type="text" class=" input">
+     
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col s3">
+    	 <label class="active label" for="option_rate">Rating</label>
+      <input value=".2" id="option_rate" type="text" class=" input">
+     
+    </div>
+  </div>
+<div class="row">
+    <div class="input-field col s3">
+    	 <label class="active label" for="option_price">Price</label>
+      <input value=".1" id="option_price" type="text" class=" input">
+     
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col s3">
+    	 <label class="active label" for="option_rev">Number of Reviews</label>
+      <input value=".1" id="option_rev" type="text" class=" input">
+     
+    </div>
+  </div>
+  <button type="button" class="weightUpdate btn btn-light">Update Weighting</button>
+</div>
+<script>
+ $(document).ready(function(){
+ 	//default weightings
+ 	var sameCatWeight = 0.6;
+	var ratingWeight = 0.2;
+	var priceWeight = 0.1; 
+	var reviewWeight = 0.1;
+	
+	var input = "68 Chinese"; //user input test
+	var yelpData; //data storage
+
+	d3.csv("yelp_cats_boston_csv.csv", function(error, data){
+
+	  if (error) { console.log(error); }
+	  yelpData = data;   
+	  processUserInput(yelpData, false);
+
+		
+	}); //end of csv reading
+
+	$(document).on('click', '#btn_search', function(element){
+	      input = $('#select-beast option:selected').text();
+	      $( ".details"  ).empty();
+	      processUserInput(yelpData, true);
+  	}); //end of on click
+
+
+	$(document).on('click', '.changeCenter', function(element){
+	      input = $('.title_res').text();
+	      processUserInput(yelpData, true);
+  	}); //end of on click
+  	$(document).on('click', '.weightUpdate', function(element){
+  		console.log("clicked");
+       	sameCatWeight = parseFloat($('#option_cat').val());
+		ratingWeight = parseFloat($('#option_rate').val());
+		priceWeight = parseFloat($('#option_price').val());
+		reviewWeight = parseFloat($('#option_rev').val());
+		console.log(sameCatWeight);
+	    processUserInput(yelpData, true);
+  	}); 
+
+	
+  	var userNode;
+	function processUserInput(data, update){
+		
+			var recNode = [];
+		
+			var origLinks =[];
+			var origNodes = [];
+
+			//store all restaurant names for autocomplete
+			var restaurantList = d3.map(data, function(d){return d.name;}).keys();
+
+			restaurantList.forEach(function(e){
+				$( "#select-beast" ).append( "<option value="+e+">"+e+"</option>" );
+			});
+
+			$('#select-beast').selectize({
+				create: true,
+				sortField: {
+					field: 'text',
+					direction: 'asc'
+				},
+				dropdownParent: 'body'
+			});		
+
+		  //https://medium.com/ninjaconcept/interactive-dynamic-force-directed-graphs-with-d3-da720c6d7811
+
+		  	//check to make sure user input is valid
+			console.log("entered pricess");
+			if(!(input == "")){
+
+			userNode = "";
+			var nameMap = new Map();
+
+		 	 data.forEach(function(e){
+		  		var arr = parseCats(e.categories);
+		  		var loc = parseLoc(e.location);
+		  		//as some places have the same name but different ratings, must link nodes by a special ID and check for duplicate names
+		  		
+		  		if(nameMap.get(e.name) == null)
+		  			nameMap.set(e.name, 1);
+		  		else
+		  			nameMap.set(e.name, nameMap.get(e.name) + 1);
+
+		  		var lbl = e.name + "_" + nameMap.get(e.name);
+		  		var nodeSingle ="";
+
+		  		var nodeSingle = {label:lbl, name:e.name, categories: arr, rating: parseFloat(e.rating), reviews: parseFloat(e.review_count), price: e.price, price_metric: parseFloat(e.price_metric), url: e.url, image: e.image_url, text: e.snippet_text, location: loc, strength:0};
+
+		  		if((e.name == input) && (userNode == "")){
+		  			userNode = nodeSingle;
+		  		}
+			   recNode.push(nodeSingle);
+			 });
+
+			//Links
+				//determine similar nodes and add to list
+					//if there are similar categories between two nodes, then add to list where {target, source, strength} target is user restaurant, source is the similar restaurance, and strength is the number of similar categories
+					//similarity measures: cateogry; .6, price; .3, rating: .1} get weights from user slides
+					//similarity function: catWeight*(num similar cats/num orig cats) + priceweight * (distance from price range [4 being exact, 1 being farthest]/1) + ratingweight*(rating/5)
+
+			var links = [];	
+			var nodes =[];
+			var checkMap = new Map();
+
+			var baseCats = userNode.categories; //store array 
+			var baseCatsNum = baseCats.length;
+
+			nodes.push(userNode);
+
+			var findIndexUser = 0;
+			var countIndexUser = 0;
+			recNode.forEach(function(e){
+				var common = $.grep(baseCats, function(element) {
+				    return $.inArray(element, e.categories ) !== -1;
+				});
+
+
+				var priceSame = 0; 
+				if(e.price_metric == userNode.price_metric)
+					priceSame = 1;
+				var reviewMetric = 0;
+
+				console.log(e.reviews);
+				if(e.reviews < 10) {
+					reviewMetric = 1;
+				}else if(e.reviews >= 10 && e.reviews < 100){
+					reviewMetric = 3;
+				}else if(e.reviews >= 100 && e.reviews < 500){
+					reviewMetric = 3;
+				}else{
+					 reviewMetric = 5;
+					} 
+				console.log(reviewMetric);
+				
+				var similarityMeasure = ((common.length/baseCatsNum)*sameCatWeight) + (e.rating/5)*ratingWeight + priceWeight*priceSame + (reviewMetric/5)*reviewWeight;
+				console.log((sameCatWeight) + ratingWeight + priceWeight + reviewWeight);
+				var maxSimilarity = (sameCatWeight) + ratingWeight + priceWeight + reviewWeight;
+
+				console.log("Pre Similarity: " + similarityMeasure + " Max: " + maxSimilarity);
+				similarityMeasure = similarityMeasure/maxSimilarity;
+				// similarityMeasure = maxSimilarity - similarityMeasure;
+
+
+				//filter low similarity measures and the main node; only display nodes in a similar category
+				if(similarityMeasure > 0.4 && !(e.label == userNode.label) && common.length>0){
+					//code doesn't know what to do with repeated palces +similarity values
+
+					var arr = parseCats(e.categories);
+					links.push({source: e.label, target:userNode.label, location: e.location, strength: similarityMeasure, level: 1});
+					e.strength = similarityMeasure;
+					nodes.push(e);
+					// checkMap.set(e.name, userNode.name); //used for depresince lines will be bi-direction, account for both possibilities to avoid repitition
+					// checkMap.set(userNode.name, e.name);
+				}
+			});
+			// get top 20 most similar
+			// links.sort(compare);
+			// links = links.slice(1, 20);
+
+			// nodes.sort(compare);
+			// nodes = nodes.slice(1, 41);
+			
+
+
+			//using a collections call to edit array loaded asynchronously, so needed to implement for loop
+
+			// nodeTemp.forEach(function(e){
+
+			// 	userNode = e;
+			// 	var baseCats = userNode.categories; //store array 
+			//     var baseCatsNum = baseCats.length;
+
+			// 	nodeTemp.forEach(function(e){
+				
+
+			// 		var common = $.grep(baseCats, function(element) {
+			// 		    return $.inArray(element, e.categories ) !== -1;
+			// 		});
+			// 		var similarityMeasure = ((common.length/baseCatsNum)*.6) + (e.rating/5)*.4;
+
+			// 		if(similarityMeasure > 0 && e.name != userNode.name && common.length>0){
+			// 			var arr = parseCats(e.categories);
+			// 			if(checkMap.get(e.name) != userNode.name || checkMap.get(userNode.name) != e.name){
+			// 				links.push({source: e.name, target:userNode.name, strength: similarityMeasure, level: 2});
+			// 				checkMap.set(e.name, userNode.name); //since lines will be bi-direction, account for both possibilities to avoid repitition
+			// 				checkMap.set(userNode.name, e.name);
+			// 			}
+
+			// 		}
+			// 		});
+
+			// });
+			origLinks = links;
+			origNodes = nodes;
+
+			createRecVis(origNodes, origLinks, update);
+
+
+		//For second vis
+		  //Nodes
+		  	//process data into groups, etc
+		  	//grab all top level groups 
+			//get all categories
+			 var categories = d3.map(data, function(d){return d.categories;}).keys();
+
+			 //parse and group categories
+			 var catMap = returnCatsMap(categories);
+
+		  		//combine categories using rejex similairity and store into map {{category a, category b}, group}
+
+		  	//for each restaurant, push to data set like: {restaurantName_lowercase, group, restaurantName_correctcase, levelnumber}; group is the category for which the restaurant belongs to and let level be "2" for all restaurant; if a restaurant has multiple distinct categories, add into diff rows + groups 
+
+		  //Links
+		 	//store user selection
+
+		  	//based on user selection, make link dataset as such: {target, source, strength} where each target is the user selected category, the source is the restaurant, and the strength is 
+	  }//end of if statment
+	  else
+	  	alert("Please Select a Valid input from the dropdown.");
+	} //end of function processUserInput
+
+	//sorting function for graph nodes ascending
+	function compare(a,b) {
+	  if (a.strength > b.strength)
+	    return -1;
+	  if (a.strength < b.strength)
+	    return 1;
+	  return 0;
+	}
+
+
+
+	//returna a unique array of all categories in a dataset
+	function returnCatsMap(categories){
+		var mapCats = new Map();
+		
+		categories.forEach(function(e){
+		 	var i = 2;
+		 	while(nth_occurrence(e, "[", i) !=  -1){
+		 		var indexOpen = nth_occurrence(e, "[", i) + 1;
+		 		var indexClose = nth_occurrence(e, "]", i - 1);
+		 		var catSub = e.substring(indexOpen, indexClose);
+		 		var j = 1;
+		 		i++;
+		 		if(mapCats.get(catSub) == null){
+		 			mapCats.set(catSub, 0);
+		 		}
+		 	}
+
+		 });
+		return mapCats;
+	}//end of function returnCatsMap
+
+	function parseCats(str){
+		var i = 2;
+		var arrCats = [];
+		 	while(nth_occurrence(str, "[", i) !=  -1){
+		 		var indexOpen = nth_occurrence(str, "[", i) + 1;
+		 		var indexClose = nth_occurrence(str, "]", i - 1);
+		 		var catSub = str.substring(indexOpen, indexClose);
+		 		var j = 1;
+		 		i++;
+		 		arrCats.push(catSub);
+		 		
+		 	}
+		 return arrCats;
+	}//end of function parseCats
+
+	function parseLoc(str){
+		var getStart = str.indexOf("display_address") + 19;
+		var getEnd = str.indexOf("geo_accuracy") - 5;
+		str = str.substring(getStart,getEnd);
+		str = str.replace(/u'|'/gi, "");
+		
+		return str;
+	}//end of function parseLoc
+
+	//helper function for parsing jsons
+	//https://stackoverflow.com/questions/12744995/finding-the-nth-occurrence-of-a-character-in-a-string-in-javascript
+	function nth_occurrence (string, char, nth) {
+	    var first_index = string.indexOf(char);
+	    var length_up_to_first_index = first_index + 1;
+
+	    if (nth == 1) {
+	        return first_index;
+	    } else {
+	        var string_after_first_occurrence = string.slice(length_up_to_first_index);
+	        var next_occurrence = nth_occurrence(string_after_first_occurrence, char, nth - 1);
+
+	        if (next_occurrence === -1) {
+	            return -1;
+	        } else {
+	            return length_up_to_first_index + next_occurrence;  
+	        }
+	    }
+	} //end of function nth_occurence
+
+
+
+	var scaleSim, scaleWidth, colorScale, svg, link, node, simulation, g, label, scale;
+
+	function createRecVis(nodes, links, update){
+
+		if(!update) 
+			setup();
+		else {
+			restart();
+		}
+
+	
+
+		function setup(){
+
+			scaleSim = d3.scaleLinear()
+			    .domain([d3.max(links, function(d) { return d.strength; }), 0])
+			    .range([1,150]);
+
+		    scaleWidth = d3.scaleLinear()
+			    .domain([0, d3.max(links, function(d) { return d.strength; })])
+			    .range([.1,5])
+
+		    colorScale = d3.scaleLinear()
+			    .domain([1, d3.max(nodes, function(d) { return d.rating; })])
+			      // .interpolate(d3.interpolateRdBu)
+			    .range(['#66c2a4','#41ae76','#238b45','#006d2c','#00441b']);
+
+			svg = d3.select("svg"), //define svg
+			    width = +svg.attr("width"),
+			    height = +svg.attr("height");
+
+			g = svg.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")"),
+				link = svg.append("g").attr("class", "links").selectAll(".link"),
+				node = svg.append("g").selectAll(".node");
+
+			simulation = d3.forceSimulation()
+			    .force("link", d3.forceLink().id(function(d) { return d.label; }).distance(function(d){ return scaleSim(d.strength);}).strength(1))
+			    .force("charge", d3.forceManyBody().strength(function(d){return scale(d.reviews) * -50}))
+			    .alphaTarget(.1)
+			    .force("center", d3.forceCenter(width / 2, height / 2))
+			    .on("tick", ticked);
+				
+
+			 scale = d3.scaleLinear()
+			    .domain([0, d3.max(nodes, function(d) { return d.reviews; })])
+			    .range([10,15]);
+			    // restart();
+
+		    restart();
+		}
+
+		//followed this general update pattern: https://bl.ocks.org/mbostock/1095795
+
+	  	function restart(){ //perform updates
+
+			link = link.data(links);
+			link.exit().remove();
+			link = link.selectAll("lines").enter().append("line")
+			    .attr("stroke-width", function(d) { console.log(d.strength); return scaleWidth(d.strength); })
+		    	.merge(link);
+
+		   
+
+		  	node = node.data(nodes, function(d){return d.label});
+
+		  	node.exit().transition().attr("r", 0).remove();
+
+			node = node.enter().append("circle")
+		 		.attr("r", function(d){ console.log("Radius: " + scale(d.reviews)); return scale(d.reviews);})
+		        .call(d3.drag()
+		        	.on("start", dragstarted)
+		        	.on("drag", dragged)
+		        	.on("end", dragended))
+		        .on("click",  function(d) {addDetails(d)} )
+		        .style("opacity", 0.7)
+		        .attr('stroke','black')
+			    .attr('stroke-width',0)
+	        	.on('mouseover',function(d) {
+			        d3.select(this)
+			      	  .transition()
+			      	  .duration(100)
+			      	  .attr('stroke','black')
+			      	  .attr('stroke-width',2);
+
+			      	  addName(d.name);
+			      })
+			      .on('mouseout',function () {
+			      	removeName();
+			        d3.select(this)
+			          .transition()
+			          .duration(100)
+			          .attr('stroke','black')
+			          .attr('stroke-width',0);
+			      })
+			     .merge(node);
+
+
+	        	
+		        node.attr("fill", function(d) { 
+		      		if(d.label == userNode.label)
+		      			return "gray";
+	      			return colorScale(d.rating); });
+
+
+	         
+		  	node.append("title")
+		      	.text(function(d) { return d.name; });
+
+		  	simulation.nodes(nodes);
+		      	// .on("tick", ticked);
+
+		    // force.nodes().filter(function(d){d.strength==0})
+
+		 	simulation.force("link").links(links);
+
+		    simulation.alpha(.1).restart();
+
+
+	   	 }  //end of function restart 
+
+		function ticked() {
+		    link
+		        .attr("x1", function(d) { return d.source.x; })
+		        .attr("y1", function(d) { return d.source.y; })
+		        .attr("x2", function(d) { return d.target.x; })
+		        .attr("y2", function(d) { return d.target.y; });
+
+		    node
+		        .attr("cx", function(d) { return d.x; })
+		        .attr("cy", function(d) { return d.y; });
+		        // .attr("cx", function(d) { return d.x = Math.max(scale(d.reviews), Math.min(width - scale(d.reviews), d.x)); })
+      		  //  .attr("cy", function(d) { return d.y = Math.max(scale(d.reviews), Math.min(height - scale(d.reviews), d.y)); });
+
+      		
+		} //end of function tickers
+
+
+		function dragstarted(d) {
+		  if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+		  d.fx = d.x;
+		  d.fy = d.y;
+		} //end of function  dragstarted
+
+		function dragged(d) {
+		  d.fx = d3.event.x;
+		  d.fy = d3.event.y;
+		} //enf of function dragged
+
+		function dragended(d) {
+		  if (!d3.event.active) simulation.alphaTarget(0);
+		  d.fx = null;
+		  d.fy = null;
+		} //end of function dragended
+		
+
+	}//end of function createRecVis
+	function addName(name){
+
+		$( ".details_Name" ).append(name);
+	}
+	function removeName(name){
+
+		$( ".details_Name"  ).empty();
+	}
+
+	//adds details to nodes on clicks
+	function addDetails(data){
+
+		removeDetails();
+
+		var str =(data.categories).toString();
+		console.log(str);
+		var cats = str.replace(/u'|'/gi, "");
+		
+		var toAppend = "<h4 class='title_res'>" + data.name + "</h4>\
+			<p><a href = '"+data.url+"'><span class = 'sub-category'><i>See on Yelp</i></span></a></p>\
+			<p><span class = 'sub-category'>Rating: </span>"+data.rating+"</p>\
+			<p><span class = 'sub-category'>Number of Reviews: </span>"+data.reviews+"</p>\
+			<p><span class = 'sub-category'>Price: </span>"+data.price+"</p>\
+			<p><span class = 'sub-category'>Location: </span>"+data.location+"</p>\
+			<p><span class = 'sub-category'>Category Tags: </span>"+cats+"</p>\
+			<button type='button' class='changeCenter btn btn-light'>Make this the Center</button>";
+		$( ".details" ).append(toAppend);
+	}
+	function removeDetails(){
+		$( ".details"  ).empty();
+
+	}
+
+
+}); //end of document.ready
+</script>
+
+</body>
+</html>

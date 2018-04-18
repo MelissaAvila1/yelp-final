@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+	<script src="//d3js.org/topojson.v1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+	
+	<script src="https://d3js.org/d3-array.v1.min.js"></script>
+	<script src="https://d3js.org/d3-geo.v1.min.js"></script>
+	<script src='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'></script>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css' rel='stylesheet' />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+	<link rel="stylesheet" href="style.css">
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+	
+	<style>
+		body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; }
+		#map { 
+		position:absolute; 
+		width: 100%;
+		height: 100%;
+		box-shadow: 0 0 4px rgba(0,0,0,1);
+		}
+		svg {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		}
+		
+	</style>
+</head>
+
+<body>
+	<div id='map'></div>
+	<script>
+		var bvx = 1  *0.1;
+		var bvy = 0.4*0.1;
+		var maxbounds=[[-71.052126-bvx,42.358812-bvy],[-71.052126+bvx,42.358812+bvy]];
+		mapboxgl.accessToken = 'pk.eyJ1IjoiYmxzMjM1IiwiYSI6ImNqZzJuNjM5djFwdjAzM2xsaHJrYXA4ODYifQ.pBEbs3aXunO9AHaYIa1dMg';
+		var map = new mapboxgl.Map({
+			container: 'map',
+			style: 'mapbox://styles/bls235/cjg49i7ra1ti62smji5ndhq52',
+			maxBounds: maxbounds
+		});
+		
+		
+		var bounds ={};
+		//Calculate bounds
+		//Cambridge geojson: https://github.com/codeforboston/open_data_cambridge
+		//Boston GeoJson: https://github.com/dj/boston/blob/master/data/boston-neighborhoods.json
+		//MapBox Hover: https://www.mapbox.com/mapbox-gl-js/example/hover-styles/
+		//MapBox OnClick: https://www.mapbox.com/mapbox-gl-js/example/polygon-popup-on-click/
+		//D3+MapBox SVG Overlay: http://bl.ocks.org/enjalot/0d87f32a1ccb9a720d29ba74142ba365
+		
+		
+		map.dragRotate.disable();
+		map.touchZoomRotate.disableRotation();
+		map.on('load', function () {
+			map.addSource('neighborhoods', {
+				"type": "geojson",
+				"data": "boston_neighborhoods.geojson"
+			});
+			
+			// Add a layer showing the neighborhoods polygons.
+			map.addLayer({
+				'id': 'neighborhoods-layer',
+				'type': 'fill',
+				'source': 'neighborhoods',
+				'paint': {
+					'fill-color': 'rgba(200, 100, 240, 0.1)',
+					'fill-outline-color': 'rgba(200, 100, 240, 1)'
+				}
+			});
+			
+			map.addLayer({
+				"id": "neighborhoods-borders",
+				"type": "line",
+				"source": "neighborhoods",
+				"layout": {},
+				"paint": {
+					"line-color": "#627BC1",
+					"line-width": 1
+				}
+			});
+			
+			map.addLayer({
+				"id": "neighborhoods-layer-hover",
+				"type": "fill",
+				"source": "neighborhoods",
+				"layout": {},
+				"paint": {
+					"fill-color": "#627BC1",
+					"fill-opacity": .7
+				},
+				"filter": ["==", "name", ""]
+			});
+			
+			
+			
+			
+			map.on('click', 'neighborhoods-layer', function (e) {
+				if(mapminimized == false && maptimeout==false){
+					var name = e.features[0].properties.name;
+					map.fitBounds(bounds[name]);
+				}
+				/*new mapboxgl.Popup()
+					.setLngLat(e.lngLat)
+					.setHTML(e.features[0].properties.name)
+				.addTo(map);*/
+				
+			});
+			
+			// Change the cursor to a pointer when the mouse is over the states layer.
+			map.on('mouseenter', 'neighborhoods-layer', function () {
+				map.getCanvas().style.cursor = 'pointer';
+			});
+			
+			// Change it back to a pointer when it leaves.
+			map.on('mouseleave', 'neighborhoods-layer', function () {
+				map.getCanvas().style.cursor = '';
+				map.setFilter("neighborhoods-layer-hover", ["==", "name", ""]);
+				
+			});
+			
+			map.on("mousemove", "neighborhoods-layer", function(e) {
+				if (mapminimized == false){
+					map.setFilter("neighborhoods-layer-hover", ["==", "name", e.features[0].properties.name]);
+				}
+			});
+			
+			
+			
+		});
+		//map.scrollZoom.disable()
+		//map.addControl(new mapboxgl.Navigation());
+		
+		// Setup our svg layer that we can manipulate with d3
+		var container = map.getCanvasContainer()
+		var svg = d3.select(container).append("svg")
+		
+		// we calculate the scale given mapbox state (derived from viewport-mercator-project's code)
+		// to define a d3 projection
+		function getD3() {
+			var bbox = document.body.getBoundingClientRect();
+			var center = map.getCenter();
+			var zoom = map.getZoom();
+			// 512 is hardcoded tile size, might need to be 256 or changed to suit your map config
+			var scale = (512) * 0.5 / Math.PI * Math.pow(2, zoom);
+			
+			var d3projection = d3.geo.mercator()
+			.center([center.lng, center.lat])
+			// .translate([bbox.width/2, bbox.height/2])
+			.translate([$('#map').width()/2, $('#map').height()/2])
+			.scale(scale);
+			
+			return d3projection;
+		}
+		// calculate the original d3 projection
+		var d3Projection = getD3();
+		var dots;
+		var path = d3.geo.path()
+		d3.json('boston_neighborhoods.geojson', function(geodata) {
+			geodata = geodata.features;
+			console.log(geodata);
+			for(var i = 0 ; i < geodata.length ; i ++){
+				var name = geodata[i].properties.name;
+				var coords;
+				/*if(name == "Cambridge"){
+					coords= geodata[i].geometry.coordinates[0];
+					}else{
+					coords= geodata[i].geometry.coordinates[0][0];
+					}
+				*/
+				
+				coords= geodata[i].geometry.coordinates[0][0];
+				var minx = 100000;
+				var maxx = -100000;
+				var maxy = -100000;
+				var miny = 100000;
+				for(var j = 0;  j < coords.length;j++){
+					var xy = coords[j];
+					if(xy[0] < minx){
+						minx = xy[0];
+					}
+					if(xy[1] < miny){
+						miny = xy[1];
+					}
+					if(xy[0] > maxx){
+						maxx = xy[0];
+					}
+					if(xy[1] > maxy){
+						maxy = xy[1];
+					}
+				}
+				
+				var maxboundinset = 0.01;
+				if(minx < maxbounds[0][0]+maxboundinset){
+					xy[0] = maxbounds[0][0]+maxboundinset;
+				}
+				if(miny < maxbounds[0][1]+maxboundinset){
+					xy[1] = maxbounds[0][1]+maxboundinset;
+				}
+				if(maxx > maxbounds[1][0]-maxboundinset){
+					xy[0] = maxbounds[1][0]-maxboundinset;
+				}
+				if(maxy > maxbounds[1][1]-maxboundinset){
+					xy[1] = maxbounds[1][1]-maxboundinset;
+				}
+				bounds[name] = [[minx,miny],[maxx,maxy]];
+				
+			}
+			d3.csv("yelp_cats_boston_csv.csv", function(err, datanew) {
+				var newdatadict = {}
+				for(var i = 0; i < datanew.length; i++){
+					newdatadict[datanew[i].name] = datanew[i];
+				}
+				d3.csv("yelp_cats_boston_fixed.csv", function(err, data) {
+					console.log(data);
+					//return;
+					//var points = topojson.feature(data, data.objects.london_stations)
+					var points = [];
+					for(var i = 0 ; i < data.length; i ++){
+						d = data[i];
+						var datapoint = {}
+						var pos = [d.longitude,d.latitude];
+						var inside = false;
+						for(var j = 0; j < geodata.length;j++){
+							if( d3.geoContains(geodata[j], pos) == true){
+								//console.log(geodata[j].properties.name);
+								datapoint.neighborhood = geodata[j].properties.name;
+								inside = true;
+								break;
+							}
+						}
+						if(inside ){
+							datapoint.name = d.name;
+							datapoint.coordinates = pos;
+							datapoint.data = data[i];
+							datapoint.datanew = newdatadict[data[i].name];
+							points.push(datapoint);
+						}
+					}
+					console.log(points);
+					//console.log(data[0], getLL(data[0]), project(data[0]))
+					
+					
+					
+					d3.select('#map').on('click',function(e){
+						if(mapminimized == true){
+							MaximizeMap();
+							d3.event.stopPropagation(); 
+						}
+					});
+					var restaurants = svg.selectAll("g")
+					.data(points)
+					.enter()
+					.append("g")
+					
+					dots = restaurants.append("circle").classed("dot", true)
+					.attr("r", 1)
+					.style({
+						fill: "#0082a3",
+						"fill-opacity": 0.6,
+						stroke: "#004d60",
+						"stroke-width": 1
+					}).attr("r", '10');
+					
+					
+					bounds_array = []
+					boundskeys = Object.keys(bounds);
+					for(var i = 0; i<boundskeys.length;i++){
+						var n = boundskeys[i]
+						var neighborhood = {
+							name: n,
+							center: [
+							(bounds[n][0][0] + bounds[n][1][0])/2,
+							(bounds[n][0][1] + bounds[n][1][1])/2,
+							]
+						}
+						console.log(neighborhood)
+						bounds_array.push(neighborhood);
+					}
+					
+					/*var labels = svg.selectAll("text.neighborhood_labels")
+						.data(bounds_array)
+						.enter()
+					.append("text").classed("neighborhood_labels", true)*/
+					
+					dots.on('mouseover', function(d,i){
+						if(mapminimized != true){
+							d3.select(this).attr({
+								fill: "orange",
+								r: 15
+							});
+							svg.append("text").attr({
+								id: "tooltip",
+								x: d3Projection(d.coordinates)[0]+20,
+								y: d3Projection(d.coordinates)[1]+10
+							}).text(d.name)
+							
+						}
+					})
+					dots.on('mouseout', function(d,i){
+						d3.select(this).attr({
+							fill: "#0082a3",
+							r: 10
+						});
+						d3.select("#tooltip").remove()
+						
+					})
+					
+					dots.on('click', function(d,i){ 
+						console.log(d);
+						
+						d3.event.stopPropagation(); 
+						var delay = 500;
+						if(mapminimized == true){
+							delay = 10;
+						}
+						
+						setTimeout(function(){map.flyTo({
+							center:d.coordinates,
+							zoom: 14
+						});},delay);
+						
+						
+						if(mapminimized == false){
+							MimizeMap();
+						}
+						
+						//$("#frame").load("index2.html");
+						$("#frame").attr("src","index2.html?name="+encodeURI(d.name));
+					});
+					console.log(d3.geoContains);
+					boundskeys = Object.keys(bounds);
+					for(var i = 0; i<boundskeys.length;i++){
+						
+					}
+					
+					function render() {
+						d3Projection = getD3();
+						path.projection(d3Projection);
+						
+						dots
+						.attr({
+							cx: function(d) { 
+								var x = d3Projection(d.coordinates)[0];
+								return x
+							},
+							cy: function(d) { 
+								var y = d3Projection(d.coordinates)[1];
+								return y
+							}
+						})
+						
+						/*labels
+							.attr({
+							x: function(d){
+							var x = d3Projection(d.center)[0]
+							return x
+							},
+							y: function(d){
+							var y = d3Projection(d.center)[1]
+							return y
+							}
+						})*/
+						.text(function(d){return d.name})
+					}
+					
+					// re-render our visualization whenever the view changes
+					map.on("viewreset", function() {
+						render()
+					})
+					map.on("move", function() {
+						render()
+					})
+					
+					// render our initial visualization
+					render()
+					RefreshFilters();
+				});
+			});
+			
+			//console.log(bounds);
+		});
+		
+		
+		var mapminimized = false;
+		var maptimeout = false;
+		function MimizeMap(){
+			if(maptimeout == true ||mapminimized == true){
+				return;
+			}
+			maptimeout = true;
+			map['dragPan'].disable();
+			map['scrollZoom'].disable();
+			mapminimized =  true;
+			d3.select('#map').interrupt();
+			d3.select('#map').transition().style('width','300px').style('height','300px')
+			.each('end',
+			function(e){
+				maptimeout = false;
+				console.log("transition over!");
+			}
+			);
+			//d3.select('#map').style('width','300px').style('height','300px');
+			
+			//	map.resize();
+			for(var j = 0; j < 6; j++){
+				setTimeout(function(){ 
+					map.resize();
+				}, j* 150);
+			}
+			
+		}
+		function MaximizeMap(){
+			if(maptimeout == true || mapminimized == false){
+				return;
+			}
+			map['dragPan'].enable();
+			map['scrollZoom'].enable();
+			mapminimized =  false;
+			maptimeout = true;
+			console.log($(window).width());
+			d3.select('#map').transition().style('width',$(window).width()+'px').style('height',$(window).height()+'px')
+			.each('end',
+			function(e){
+				maptimeout = false;
+				console.log("transition over!");
+			}
+			)
+			
+			//d3.select('#map').style('height','100%').style('width','100%');
+			//		map.resize();
+			setTimeout(function(){ 
+				d3.select('#map').interrupt();
+				d3.select('#map').style('width','100%').style('width','100%');
+				map.resize();
+			}, 500);
+			/*for(var j = 0; j < 10; j++){
+				setTimeout(function(){ 
+				map.resize();
+				}, j* 100);
+			}*/
+			
+			for(var j = 0; j < 6; j++){
+				setTimeout(function(){ 
+					map.resize();
+				}, j* 150);
+			}
+		}
+		
+		function RefreshFilters(){
+			dots.attr('visibility',function(d){
+				var display = true;
+				//console.log(d);
+				if('datanew' in d && d.datanew != null ){
+					if('price_metric' in d.datanew  == false ||
+					$('#priceselector').val().includes(d.datanew['price_metric']) == false){
+						display = false;
+					}
+					if('rating' in d.datanew  != false){
+						var val = 	$('#ratingselector').val();
+						if(val != "all"){
+							if( Number(d.data.rating)< Number(val)){
+								display = false;
+							}
+						}
+					}
+					}else{
+					display = false;
+				}
+				if(display){
+					return 'visible';
+				}
+				return 'hidden';
+			});
+		}
+	</script>
+	
+	<div id='floatingnavbar' style='position:absolute;'>
+		<div style='position:absolute;top:30px;left:50px;width:900px;height:0px;'>
+			<div class='navbuttonwrapper'>
+				<a class='dropdown-trigger btn' href='#' id='priceselectorbutton' 
+				style='position:absolute;top:0px;'>Price</a>
+				<div class="input-field col s12" style="position:absolute; top: 40px; width: 300px;" >
+					<select multiple id='priceselector' style='visibility: hidden;width:300px;'>
+						<option value="1" selected>$</option>
+						<option value="2" selected>$$</option>
+						<option value="3" selected>$$$</option>
+						<option value="4" selected>$$$$</option>
+					</select>
+				</div>
+			</div>
+			<div class='navbuttonwrapper'>
+				<a class='dropdown-trigger btn' href='#' id='ratingbutton' 
+				style='position:absolute;top:0px;'>Rating</a>
+				<div class="input-field col s12" style="position:absolute; top: 40px; width: 300px;" >
+					<select id='ratingselector' style='visibility: hidden;width:300px;'>
+						<option value="all" selected>All</option>
+						<option value="2">2+</option>
+						<option value="3">3+</option>
+						<option value="4">4+</option>
+						<option value="5">5</option>
+					</select>
+				</div>
+			</div>
+			
+			<script>
+				$('select').formSelect();
+				MakeButton('#priceselectorbutton','#priceselector')
+				MakeButton('#ratingbutton','#ratingselector')
+				//$('#priceselector').material_select();
+				function MakeButton(s1,s2){
+					$(s1).click( function(){
+						$(s2).parent().children('.dropdown-trigger').trigger('click');
+					});
+					$(s2).on( 'change',function(){
+						RefreshFilters();
+					});
+					$(s2).parent().children('.dropdown-trigger').css('visibility','hidden');
+					$(s2).parent().children('.dropdown-trigger').css('pointer-events','none');
+					//$(s2).parent().children('.caret').css('visibility','hidden');
+					$(s2).parent().children('.caret').css('visibility','hidden');
+					$(s2).parent().children('.caret').css('pointer-events','none');
+				}
+			</script>
+		</div>
+	</div>
+	<iframe id='frame' style='width:100%;height:100%'></iframe>
+	<script>
+		/*$("#frame").click(function () { 
+		  $("#frame").load("http://www.google.com/");
+		});*/
+	</script>
+	
+</body>

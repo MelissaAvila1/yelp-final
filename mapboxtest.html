@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <script src="//d3js.org/topojson.v1.min.js"></script>
+  <script src="https://d3js.org/d3-array.v1.min.js"></script>
+<script src="https://d3js.org/d3-geo.v1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css' rel='stylesheet' />
+
+
+  <style>
+    body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; }
+    #map { 
+      position:absolute; 
+      width: 100%;
+      height: 100%;
+    }
+    svg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+	<div id='map'></div>
+	<script>
+	var bvx = 1  *0.08;
+	var bvy = 0.4*0.08;
+	 var maxbounds=[[-71.052126-bvx,42.358812-bvy],[-71.052126+bvx,42.358812+bvy]];
+	  mapboxgl.accessToken = 'pk.eyJ1IjoiZXpsNCIsImEiOiJjamcydnF2bnU2aGxxMzJudjZneWJucnZqIn0.OiiWSyRZNYatMV-HrRhVrA';
+	  var map = new mapboxgl.Map({
+		container: 'map',
+		style: 'mapbox://styles/ezl4/cjg2vtk8l0kbx2smzgn1s0xss',
+		maxBounds: maxbounds
+	  });
+	
+	
+	var bounds ={};
+	//Calculate bounds
+	//Cambridge geojson: https://github.com/codeforboston/open_data_cambridge
+	//Boston GeoJson: https://github.com/dj/boston/blob/master/data/boston-neighborhoods.json
+	//MapBox Hover: https://www.mapbox.com/mapbox-gl-js/example/hover-styles/
+	//MapBox OnClick: https://www.mapbox.com/mapbox-gl-js/example/polygon-popup-on-click/
+	//D3+MapBox SVG Overlay: http://bl.ocks.org/enjalot/0d87f32a1ccb9a720d29ba74142ba365
+
+	
+		map.dragRotate.disable();
+		map.touchZoomRotate.disableRotation();
+	map.on('load', function () {
+		// Add a layer showing the state polygons.
+		map.addLayer({
+			'id': 'neighborhoods-layer',
+			'type': 'fill',
+			'source': {
+				'type': 'geojson',
+				'data': 'boston_neighborhoods.geojson'
+			},
+			'paint': {
+				'fill-color': 'rgba(200, 100, 240, 0.1)',
+				'fill-outline-color': 'rgba(200, 100, 240, 1)'
+			}
+		});
+		map.on('click', 'neighborhoods-layer', function (e) {
+			console.log(e);
+			var name = e.features[0].properties.name;
+			console.log(name);
+			map.fitBounds(bounds[name]);
+			/*new mapboxgl.Popup()
+				.setLngLat(e.lngLat)
+				.setHTML(e.features[0].properties.name)
+				.addTo(map);*/
+				
+		});
+
+		// Change the cursor to a pointer when the mouse is over the states layer.
+		map.on('mouseenter', 'neighborhoods-layer', function () {
+			map.getCanvas().style.cursor = 'pointer';
+		});
+
+		// Change it back to a pointer when it leaves.
+		map.on('mouseleave', 'neighborhoods-layer', function () {
+			map.getCanvas().style.cursor = '';
+		});
+	});
+    //map.scrollZoom.disable()
+    //map.addControl(new mapboxgl.Navigation());
+
+    // Setup our svg layer that we can manipulate with d3
+    var container = map.getCanvasContainer()
+    var svg = d3.select(container).append("svg")
+
+    // we calculate the scale given mapbox state (derived from viewport-mercator-project's code)
+    // to define a d3 projection
+    function getD3() {
+      var bbox = document.body.getBoundingClientRect();
+      var center = map.getCenter();
+      var zoom = map.getZoom();
+      // 512 is hardcoded tile size, might need to be 256 or changed to suit your map config
+      var scale = (512) * 0.5 / Math.PI * Math.pow(2, zoom);
+
+      var d3projection = d3.geo.mercator()
+        .center([center.lng, center.lat])
+        .translate([bbox.width/2, bbox.height/2])
+        .scale(scale);
+
+      return d3projection;
+    }
+    // calculate the original d3 projection
+    var d3Projection = getD3();
+    
+    var path = d3.geo.path()
+  	d3.json('boston_neighborhoods.geojson', function(data) {
+		data = data.features;
+		console.log(data);
+	  for(var i = 0 ; i < data.length ; i ++){
+		var name = data[i].properties.name;
+		var coords = data[i].geometry.coordinates[0][0];
+		var minx = 100000;
+		var maxx = -100000;
+		var maxy = -100000;
+		var miny = 100000;
+		for(var j = 0;  j < coords.length;j++){
+			var xy = coords[j];
+			
+			if(xy[0] < minx){
+				minx = xy[0];
+			}
+			if(xy[1] < miny){
+				miny = xy[1];
+			}
+			if(xy[0] > maxx){
+				maxx = xy[0];
+			}
+			if(xy[1] > maxy){
+				maxy = xy[1];
+			}
+		}
+		bounds[name] = [[minx,miny],[maxx,maxy]];
+	  
+	  }
+		d3.csv("yelp_cats_boston_fixed.csv", function(err, data) {
+			console.log(data);
+			//return;
+		  //var points = topojson.feature(data, data.objects.london_stations)
+		  var points = [];
+		  for(var i = 0 ; i < data.length; i ++){
+			d = data[i];
+			var pos = [d.longitude,d.latitude];
+			//if(d3.geoContains(data, pos)){
+			points.push(pos);
+			//}
+		  }
+		  //console.log(data[0], getLL(data[0]), project(data[0]))
+		  var dots = svg.selectAll("circle.dot")
+			.data(points);
+		  
+		  dots.enter().append("circle").classed("dot", true)
+		  .attr("r", 1)
+		  .style({
+			fill: "#0082a3",
+			"fill-opacity": 0.6,
+			stroke: "#004d60",
+			"stroke-width": 1
+		  })
+		  .transition().duration(1000)
+		  .attr("r", 6);
+		  
+		  boundskeys = Object.keys(bounds);
+		  for(var i = 0; i<boundskeys.length;i++){
+		  }
+		  
+		  function render() {
+			d3Projection = getD3();
+			path.projection(d3Projection);
+			
+			dots
+			.attr({
+			  cx: function(d) { 
+				var x = d3Projection(d)[0];
+				return x
+			  },
+			  cy: function(d) { 
+				var y = d3Projection(d)[1];
+				return y
+			  },
+			})
+		  }
+
+		  // re-render our visualization whenever the view changes
+		  map.on("viewreset", function() {
+			render()
+		  })
+		  map.on("move", function() {
+			render()
+		  })
+
+		  // render our initial visualization
+		  render()
+		});
+
+	  console.log(bounds);
+	});
+	
+    
+  </script>
+</body>
